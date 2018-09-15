@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %} 
+{% block title %}smarttrack{% endblock %} 
+
+{% block head %}
+{{ super() }}
+<!-- <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+    body
+    {
+        background-image:url('/static/1.jpg');
+        background-size: cover;
+        /* background-attachment: fixed; */
+        /* background-size:100% 100% */
+        
+    }
+    </style>
+{% endblock %}
+
+{% block page_content %}
+<div class="alert alert-dismissible alert-success">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>欢迎使用本产品!</strong> {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Stranger
+    {% endif %}
+    </a>.
+</div>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                开关
+            </a>
+        </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+        <div class="panel-body">
+            {{ wtf.quick_form(form) }}
+        </div>
+    </div>
+    <!-- <div>
+        {{ wtf.quick_form(form) }}
+    </div> -->
+</div>
+
+<div class="row">
+
+    <div class="col-md-8">
+        <h2>地图</h2>
+        {% if current_user.is_authenticated %} 
+        {% if map_on %}
+        <img src="./static/path.png" style="height:800px;width:700px">
+        <!-- <p> {{ map_on }} </p> -->
+
+        {% else %}
+        <h3>Please open the map</h3>
+        {% endif %} 
+        {% else %}
+        <div class="alert alert-dismissible alert-info">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>抱歉!</strong> 请注册本产品！
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="col-md-4">
+        <h2>信息</h2>
+        {% if current_user.is_authenticated %}
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                监测人数
+                <span class="badge badge-primary badge-pill">14</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                路径个数
+                <span class="badge badge-primary badge-pill">2</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                数据记录
+                <span class="badge badge-primary badge-pill">1999</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                历史记录
+                <span class="badge badge-primary badge-pill">1</span>
+            </li>
+        </ul>
+        {% else %}
+        <div class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>抱歉！</strong> 请<a href="{{ url_for('auth.login') }}">登陆</a>后查看信息！
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-4">
+        <h2>视频</h2>
+        {% if current_user.is_authenticated %} 
+        {% if video_on %}
+        <img src="{{ url_for('main.video_feed') }}" width="100%"> 
+        {% else %}
+        <img src="./static/map.png" width="100%"> 
+        {% endif %} 
+        {% else %}
+        <div class="alert alert-dismissible alert-info">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>抱歉!</strong> 请注册本产品！
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% if current_user.is_authenticated %} 
+{% if map_on %}
+<div id="main" style="position: absolute;top:350px;left:400px;height:700px;width:580px"></div>
+<!-- <input type="text" value="{{data}}" id="data" hidden> -->
+{% else %}
+{% endif %}
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/echarts.min.js"></script>
+<script type="text/javascript" src="/static/js/trail.js"></script>
+<script type="text/javascript">
+	$(function () { $('#collapseThree').collapse({
+		toggle: false
+	})});
+</script> 
+{% endblock %}
