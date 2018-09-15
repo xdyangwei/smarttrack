@@ -35,6 +35,10 @@ def index():
     db.session.add(video_switch)
     # db.session.commit()  
     return render_template('index.html', form=form, map_on=map_on, video_on=video_on)
+@main.route('/map_on1')
+def map():
+    form = VideoForm()
+    return form.switch_map.data
 
 if os.environ.get('CAMERA'):
     Camera = import_module('camera_' + os.environ['CAMERA']).Camera
