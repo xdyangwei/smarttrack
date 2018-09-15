@@ -102,7 +102,9 @@ def video_feed():
         
 @main.route('/settings', methods=['GET', 'POST'])
 def settings():
-    return render_template('settings.html')
+    from .forms import SetForm
+    form = SetForm()
+    return render_template('settings.html', form = form)
 
 
 @main.route('/tables', methods=['GET', 'POST'])

@@ -1,8 +1,84 @@
 
 {% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %} 
 
 {% block title %}Settings{% endblock %}
 
 {% block page_content %}
+<div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" 
+                       href="#collapseOne">
+                        管理员设置
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                            {{ wtf.quick_form(form) }}
+                        </div>
+            </div>
+        </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" 
+                       href="#collapseTwo">
+                        用户设置
+                    </a>
+                </h4>
+            </div>
+            
+            <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body">
+                        {{ wtf.quick_form(form) }}
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" 
+                       href="#collapseThree">
+                        功能设置
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse">
+                <div class="panel-body">
+                        {{ wtf.quick_form(form) }}
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" 
+                       href="#collapseFour">
+                        权限管理
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseFour" class="panel-collapse collapse">
+                <div class="panel-body">
+                        {{ wtf.quick_form(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
 
+{% block script %}
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(function () { $('#collapseFour').collapse({
+		toggle: false
+	})});
+	$(function () { $('#collapseTwo').collapse('show')});
+	$(function () { $('#collapseThree').collapse('show')});
+	$(function () { $('#collapseOne').collapse('show')});
+</script> 
 {% endblock %}
