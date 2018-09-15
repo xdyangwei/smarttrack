@@ -5,6 +5,7 @@
 {% block styles %}
     {{ super() }}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/darkly/bootstrap.min.css">
+    
     <!-- <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 {% endblock %}
 
@@ -16,7 +17,7 @@
 {{ super() }}
 <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
-<style>
+<!-- <style>
     body
     {
         background-image:url('/static/1.jpg');
@@ -24,7 +25,7 @@
         /* background-size:100% 100% */
         
     }
-    </style>
+    </style> -->
 {% endblock %}
 
 {% block navbar %}
