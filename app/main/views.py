@@ -12,6 +12,40 @@ from wtforms import ValidationError
 
 from .forms import VideoForm
 
+import operator
+from functools import reduce
+import pymongo
+from app.filter import TracerList
+
+def get_raw_data(count, startdatetime=None):
+    db_conn = pymongo.MongoClient()
+    dev_names = [d['name'] for d in db_conn['identity']['devices'].find()]
+    # print(dev_names)
+
+    ret=None
+    if startdatetime is None:
+        ret = [list(db_conn['message'][dev_name].find().sort('time', -1).limit(count)) for dev_name in dev_names]
+    else:
+        ret = [list(db_conn['message'][dev_name].find({'time':{'$gt':str(startdatetime)}}).sort('time', -1).limit(count)) for dev_name in dev_names]
+        print('TIMECUT: ', str(startdatetime), 'RETLEN: ', len(ret))
+    db_conn.close()
+
+    ret = reduce(operator.add, ret)
+    for i in ret:
+        tp = [int(s) for s in i['time'].replace('-', ' ').replace(':', ' ').replace('.', ' ').split()]
+        if len(tp) == 7:
+            i['time'] = datetime(tp[0], tp[1], tp[2], tp[3], tp[4], tp[5], tp[6])
+        else:
+            i['time'] = None
+
+    ret.sort(key=lambda d: d['time'])
+
+    return ret[-count:]
+
+
+
+
+
 
 @main.route('/', methods=['GET', 'POST'])
 def index():
@@ -57,6 +91,17 @@ def gen(camera):
 def data():
     return str([{'x':i['x'], 'y':i['y'], 'time':i['time']} for i in mongo.db.mycol.find()])
 
+@main.route('/path.json')
+def path():
+    l = TracerList()
+    for d in get_raw_data(1000):
+        d.pop('_id')
+        l.tracetarget(d)
+
+    return str([tl.targetlist for tl in l.tracerlist if len(tl.targetlist) > 1]).replace("'", '"').replace('datetime.datetime(', '"').replace(')', '"')
+
+    #return str([{'x':i['x'], 'y':i['y'], 'time':i['time']} for i in mongo.db.mycol.find()])
+
 
 @main.route('/video_feed', methods=['GET', 'POST'])
 def video_feed():
@@ -77,3 +122,8 @@ def tables():
 @main.route('/charts', methods=['GET', 'POST'])
 def charts():
     return render_template('charts.html')
+
+
+
+if __name__=="__main__":
+    print(get_raw_data(100))
