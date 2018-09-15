@@ -16,7 +16,7 @@ xhr.onreadystatechange = function () {
     if (xhr.readyState == 4 && xhr.status == 200 || xhr.status == 304) {
         // 从服务器获得数据 
         //fn.call(this, xhr.responseText);
-        console.log(this.responseText);
+        // console.log(this.responseText);
         var jsonData = JSON.parse(xhr.responseText.replace(/'/g, '"'));
 
 
