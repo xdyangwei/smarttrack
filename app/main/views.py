@@ -42,11 +42,6 @@ def get_raw_data(count, startdatetime=None):
 
     return ret[-count:]
 
-
-
-
-
-
 @main.route('/', methods=['GET', 'POST'])
 def index():
     form = VideoForm()
@@ -69,10 +64,6 @@ def index():
     db.session.add(video_switch)
     # db.session.commit()  
     return render_template('index.html', form=form, map_on=map_on, video_on=video_on)
-@main.route('/map_on1')
-def map():
-    form = VideoForm()
-    return form.switch_map.data
 
 if os.environ.get('CAMERA'):
     Camera = import_module('camera_' + os.environ['CAMERA']).Camera
@@ -101,7 +92,6 @@ def path():
     return str([tl.targetlist for tl in l.tracerlist if len(tl.targetlist) > 1]).replace("'", '"').replace('datetime.datetime(', '"').replace(')', '"')
 
     #return str([{'x':i['x'], 'y':i['y'], 'time':i['time']} for i in mongo.db.mycol.find()])
-
 
 @main.route('/video_feed', methods=['GET', 'POST'])
 def video_feed():
