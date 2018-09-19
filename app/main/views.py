@@ -43,6 +43,7 @@ def get_raw_data(count, startdatetime=None):
     return ret[-count:]
 
 @main.route('/', methods=['GET', 'POST'])
+@main.route('/index', methods=['GET', 'POST'])
 def index():
     form = VideoForm()
     map_on = form.switch_map.data
@@ -100,23 +101,26 @@ def video_feed():
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
         
-@main.route('/settings', methods=['GET', 'POST'])
-def settings():
-    from .forms import SetForm
-    form = SetForm()
-    return render_template('settings.html', form = form)
+# @main.route('/settings', methods=['GET', 'POST'])
+# def settings():
+#     from .forms import SetForm
+#     form = SetForm()
+#     return render_template('settings.html', form = form)
 
 
-@main.route('/tables', methods=['GET', 'POST'])
-def tables():
-    return render_template('tables.html')
+# @main.route('/tables', methods=['GET', 'POST'])
+# def tables():
+#     return render_template('tables.html')
 
+
+# @main.route('/charts')
+# def charts():
+#     legend = 'Monthly Data'
+#     labels = ["January", "February", "March",
+#               "April", "May", "June", "July", "August"]
+#     values = [10, 9, 8, 7, 6, 4, 7, 8]
+#     return render_template('charts.html', values=values, labels=labels, legend=legend)
 
 @main.route('/charts')
 def charts():
-    legend = 'Monthly Data'
-    labels = ["January", "February", "March",
-              "April", "May", "June", "July", "August"]
-    values = [10, 9, 8, 7, 6, 4, 7, 8]
-    return render_template('charts.html', values=values, labels=labels, legend=legend)
-
+    return render_template('charts.html')
