@@ -38,6 +38,8 @@ var updateChart = function () {
       myChart.setOption({
         backgroundColor: '#fff',
         geo: [{
+          center: [4.5, -4.5],
+          zoom: 2,
           roam: true,
           itemStyle: {
             normal: {

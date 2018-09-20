@@ -37,21 +37,21 @@
 </head>
 
 <body>
-	<div class="page-container" id="view-content">
+	<div class="page-container" >
 		<!--/content-inner-->
 		<div class="left-content">
-			<div class="mother-grid-inner">
+			<div class="mother-grid-inner" >
 				<!--header start here-->
 				<div class="header-main">
 					<div class="logo-w3-agile">
-						<h1><a href="index">Pooled</a></h1>
+						<h1><a href="index">智慧安防</a></h1>
 					</div>
 					<div class="w3layouts-left">
 
 						<!--search-box-->
 						<div class="w3-search-box">
 							<form action="#" method="post">
-								<input type="text" placeholder="Search..." required="">
+								<input type="text" placeholder="搜索..." required="">
 								<input type="submit" value="">
 							</form>
 						</div>
@@ -209,7 +209,7 @@
 									<div class="profile_img">
 										<span class="prfil-img"><img src="images/in4.jpg" alt=""> </span>
 										<div class="user-name">
-											<p>Malorum</p>
+											<p>西电mobisys</p>
 											<span>Administrator</span>
 										</div>
 										<i class="fa fa-angle-down"></i>
@@ -230,10 +230,10 @@
 				</div>
 				<!--heder end here-->
 				<ol class="breadcrumb">	
-					<li class="breadcrumb-item"><a href="index">Home</a> <i class="fa fa-angle-right"></i></li>
+					<li class="breadcrumb-item"><a href="index">主页</a> <i class="fa fa-angle-right"></i></li>
 				</ol>
 				<!--four-grids here-->
-				<div class="four-grids">
+				<div class="four-grids" id="four-grids">
 					<div class="col-md-3 four-grid">
 						<div class="four-agileits">
 							<div class="icon">
@@ -241,7 +241,7 @@
 							</div>
 							<div class="four-text">
 								<h3>监测人数</h3>
-								<h4> {[ four.count ]} </h4>
+								<h4> {[ count ]} </h4>
 
 							</div>
 
@@ -254,7 +254,7 @@
 							</div>
 							<div class="four-text">
 								<h3>历史记录</h3>
-								<h4>{[ four.history ]}</h4>
+								<h4>{[ history ]}</h4>
 
 							</div>
 
@@ -267,7 +267,7 @@
 							</div>
 							<div class="four-text">
 								<h3>路径个数</h3>
-								<h4>{[ four.path ]}</h4>
+								<h4>{[ path ]}</h4>
 
 							</div>
 
@@ -281,7 +281,7 @@
 							
 							<div class="four-text">
 								<h3>警报次数</h3>
-								<h4>{[ four.alarm ]}</h4>
+								<h4>{[ alarm ]}</h4>
 
 							</div>
 
@@ -294,16 +294,16 @@
 				<div class="agileinfo-grap">
 					<div class="agileits-box">
 						<header class="agileits-box-header clearfix">
-							<h3>Statistics</h3>
+							<h3>地图</h3>
 							<div class="toolbar">
 								<div class="pull-left">
-									<div class="btn-group">
+									<!-- <div class="btn-group">
 										<a href="#" class="btn btn-default btn-xs">Daily</a>
 										<a href="#" class="btn btn-default btn-xs active">Monthly</a>
 										<a href="#" class="btn btn-default btn-xs">Yearly</a>
-									</div>
+									</div> -->
 								</div>
-								<div class="pull-right">
+								<!-- <div class="pull-right">
 									<div class="btn-group">
 										<a aria-expanded="false" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
 											Export <i class="fa fa-angle-down"></i>
@@ -317,18 +317,18 @@
 										</ul>
 									</div>
 									<a href="#" class="btn btn-primary btn-xs"><i class="fa fa-cog"></i></a>
-								</div>
+								</div> -->
 							</div>
 							
 						</header>
 						<div class="agileits-box-body clearfix">
+								<div id="main" style="height:670px;width:100%"></div>
 						</div>
 					</div>
 				</div>
 				<!--//agileinfo-grap-->
 				<!--photoday-section-->
 				
-				<div id="main" style="height:670px;width:450px"></div>
 
 				<div class="col-sm-4 wthree-crd">
 					<div class="card">
@@ -339,7 +339,7 @@
 
 								<div class="row m-0 md-bg-grey-100 p-l-20 p-r-20">
 									<div class="col-md-6 col-sm-6 col-xs-6 w3layouts-aug">
-										<h3>Camera</h3>
+										<h3>视频</h3>
 										<!-- <p>LIVE</p> -->
 									</div>
 									<div class="col-md-6 col-sm-6 col-xs-6 ">
@@ -397,7 +397,7 @@
 					<div class="card card-contact-list">
 						<div class="agileinfo-cdr">
 							<div class="card-header">
-								<h3>Contacts</h3>
+								<h3>图表</h3>
 							</div>
 							<div class="card-body p-b-20">
 								<div class="list-group">
@@ -469,7 +469,7 @@
 						<div class="card-body card-padding">
 							<div class="widget">
 								<header class="widget-header">
-									<h4 class="widget-title">Activities</h4>
+									<h4 class="widget-title">活动统计</h4>
 								</header>
 								<hr class="widget-separator">
 								<div class="widget-body">
@@ -519,7 +519,7 @@
 				<div class="w3-agileits-pane">
 					<div class="col-md-4 wthree-pan">
 						<div class="panel panel-default">
-							<div class="panel-heading"> <i class="fa fa-bell fa-fw"></i> Notifications Panel </div>
+							<div class="panel-heading"> <i class="fa fa-bell fa-fw"></i> 通知中心 </div>
 							<!-- /.panel-heading -->
 							<div class="panel-body">
 								<div class="list-group">
@@ -649,62 +649,61 @@
 			<div style="border-top:1px ridge rgba(255, 255, 255, 0.15)"></div>
 			<div class="menu">
 				<ul id="menu">
-					<li><a href="/"><i class="fa fa-tachometer"></i> <span>Dashboard</span>
+					<li><a href="/"><i class="fa fa-tachometer"></i> <span>后台</span>
 							<div class="clearfix"></div>
 						</a></li>
 
 
-					<li id="menu-academico"><a href="inbox"><i class="fa fa-envelope nav_icon"></i><span>Inbox</span>
+					<li id="menu-academico"><a href="inbox"><i class="fa fa-envelope nav_icon"></i><span>收件箱</span>
 							<div class="clearfix"></div>
 						</a></li>
-					<li><a href="gallery.html"><i class="fa fa-picture-o" aria-hidden="true"></i><span>Gallery</span>
+					<li><a href="gallery.html"><i class="fa fa-picture-o" aria-hidden="true"></i><span>相册</span>
 							<div class="clearfix"></div>
 						</a></li>
-					<li id="menu-academico"><a href="charts"><i class="fa fa-bar-chart"></i><span>Charts</span>
+					<li id="menu-academico"><a href="charts"><i class="fa fa-bar-chart"></i><span>图表</span>
 							<div class="clearfix"></div>
 						</a></li>
-					<li id="menu-academico"><a href="#"><i class="fa fa-list-ul" aria-hidden="true"></i><span> Short Codes</span>
+					<li id="menu-academico"><a href="#"><i class="fa fa-list-ul" aria-hidden="true"></i><span>编码</span>
 							<span class="fa fa-angle-right" style="float: right"></span>
 							<div class="clearfix"></div>
 						</a>
 						<ul id="menu-academico-sub">
-							<li id="menu-academico-avaliacoes"><a href="icons.html">Icons</a></li>
-							<li id="menu-academico-avaliacoes"><a href="typography.html">Typography</a></li>
+							<li id="menu-academico-avaliacoes"><a href="icons.html">图标</a></li>
+							<li id="menu-academico-avaliacoes"><a href="typography.html">打印</a></li>
 							<li id="menu-academico-avaliacoes"><a href="faq.html">Faq</a></li>
 						</ul>
 					</li>
-					<li id="menu-academico"><a href="errorpage.html"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><span>Error
-								Page</span>
+					<li id="menu-academico"><a href="errorpage.html"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><span>错误界面</span>
 							<div class="clearfix"></div>
 						</a></li>
-					<li id="menu-academico"><a href="#"><i class="fa fa-cogs" aria-hidden="true"></i><span> UI Components</span> <span
+					<li id="menu-academico"><a href="#"><i class="fa fa-cogs" aria-hidden="true"></i><span> 组件</span> <span
 							 class="fa fa-angle-right" style="float: right"></span>
 							<div class="clearfix"></div>
 						</a>
 						<ul id="menu-academico-sub">
-							<li id="menu-academico-avaliacoes"><a href="button.html">Buttons</a></li>
-							<li id="menu-academico-avaliacoes"><a href="grid.html">Grids</a></li>
+							<li id="menu-academico-avaliacoes"><a href="button.html">按钮</a></li>
+							<li id="menu-academico-avaliacoes"><a href="grid.html">网格</a></li>
 						</ul>
 					</li>
-					<li><a href="tabels.html"><i class="fa fa-table"></i> <span>Tables</span>
+					<li><a href="tabels.html"><i class="fa fa-table"></i> <span>表单</span>
 							<div class="clearfix"></div>
 						</a></li>
-					<li><a href="maps.html"><i class="fa fa-map-marker" aria-hidden="true"></i> <span>Maps</span>
+					<li><a href="maps.html"><i class="fa fa-map-marker" aria-hidden="true"></i> <span>地图</span>
 							<div class="clearfix"></div>
 						</a></li>
-					<li id="menu-academico"><a href="#"><i class="fa fa-file-text-o"></i> <span>Pages</span> <span class="fa fa-angle-right"
+					<li id="menu-academico"><a href="#"><i class="fa fa-file-text-o"></i> <span>页面</span> <span class="fa fa-angle-right"
 							 style="float: right"></span>
 							<div class="clearfix"></div>
 						</a>
 						<ul id="menu-academico-sub">
-							<li id="menu-academico-boletim"><a href="calendar.html">Calendar</a></li>
+							<li id="menu-academico-boletim"><a href="calendar.html">日历</a></li>
 							<li id="menu-academico-avaliacoes"><a href="signin.html">Sign In</a></li>
 							<li id="menu-academico-avaliacoes"><a href="signup.html">Sign Up</a></li>
 
 
 						</ul>
 					</li>
-					<li><a href="#"><i class="fa fa-check-square-o nav_icon"></i><span>Forms</span> <span class="fa fa-angle-right"
+					<!-- <li><a href="#"><i class="fa fa-check-square-o nav_icon"></i><span>Forms</span> <span class="fa fa-angle-right"
 							 style="float: right"></span>
 							<div class="clearfix"></div>
 						</a>
@@ -712,7 +711,7 @@
 							<li><a href="input.html"> Input</a></li>
 							<li><a href="validation.html">Validation</a></li>
 						</ul>
-					</li>
+					</li> -->
 				</ul>
 			</div>
 		</div>
@@ -803,7 +802,6 @@
 	   
 	});
 	</script> -->
-	<script src="/static/js/echarts.min.js"></script>
 	<script type="text/javascript" src="/static/js/trail.js"></script>
 	<script type="text/javascript">
 		$(function () {
@@ -831,14 +829,14 @@
 		var content=new Vue({
 			delimiters: ['{[', ']}'],
 
-			el:"#view-content",
+			el:"#four-grids",
 			data:{
-				four: {
+			
 					count:15,
 					history:15000,
 					path:3,
 					alarm:20
-				}
+				
 			}
 		})
 	</script>
