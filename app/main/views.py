@@ -86,7 +86,7 @@ def data():
 @main.route('/path.json')
 def path():
     l = TracerList()
-    for d in get_raw_data(1000):
+    for d in get_raw_data(100):
         d.pop('_id')
         l.tracetarget(d)
 
