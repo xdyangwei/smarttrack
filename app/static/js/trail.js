@@ -33,6 +33,12 @@ var updateChart = function () {
         pathList.push({ coords: coords });
       }
 
+
+      if(content){
+        content._data.path=pathData.length;
+        content._data.count=pathData.length+1;
+      }
+
       console.log(pathList);
 
       myChart.setOption({
