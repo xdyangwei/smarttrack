@@ -802,16 +802,15 @@
 	   
 	});
 	</script> -->
-	<script type="text/javascript" src="/static/js/trail.js"></script>
 	<script type="text/javascript">
 		$(function () {
 			$('#collapseThree').collapse({
 				toggle: false
 			})
 		});
-	</script>
+		</script>
 	<script type="text/javascript" src="/static/js/webcam.min.js"></script>
-
+	
 	<!-- Configure a few settings and attach camera -->
 	<script language="JavaScript">
 		Webcam.set({
@@ -822,25 +821,26 @@
 			force_flash: true
 		});
 		Webcam.attach('#my_camera');
-
+		
 		document.getElementById('my_camera').style = "width:100%; height: 100%; overflow:hidden";
 		document.getElementById('my_camera').getElementsByTagName('video')[0].style = "width: 100%";
-	</script>
+		</script>
 	<script>
-		var content=new Vue({
+		window.content=new Vue({
 			delimiters: ['{[', ']}'],
-
+			
 			el:"#four-grids",
 			data:{
-			
-					count:15,
-					history:15000,
-					path:3,
-					alarm:20
+				
+				count:15,
+				history:15000,
+				path:3,
+				alarm:20
 				
 			}
 		})
-	</script>
+		</script>
+		<script type="text/javascript" src="/static/js/trail.js"></script>
 </body>
 
 </html>

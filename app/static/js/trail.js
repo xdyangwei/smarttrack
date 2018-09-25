@@ -34,9 +34,9 @@ var updateChart = function () {
       }
 
 
-      if(content){
-        content._data.path=pathData.length;
-        content._data.count=pathData.length+1;
+      if(window.content){
+        window.content._data.path=pathData.length;
+        window.content._data.count=pathData.length+1;
       }
 
       console.log(pathList);
