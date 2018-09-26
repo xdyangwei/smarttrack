@@ -23,21 +23,21 @@
 				var socket = io.connect('http://120.78.71.220:5050'+namespace);
 
 				socket.on('event', function (msg) {
-					lastRecv = msg;
-					var line = document.createElement("div");
-					line.innerText = JSON.stringify(msg);
-					var list = document.getElementById("msg_list")
-					list.append(line);
-					line.scrollIntoView()
-					while (list.childElementCount > 300) {
-						list.firstChild.remove()
-					}
-					// console.log(msg);
-					var i = 1;
-					window.content._data.history++;
-					if(window.updateChart){
-						updateChart();
-					}
+					// lastRecv = msg;
+					// var line = document.createElement("div");
+					// line.innerText = JSON.stringify(msg);
+					// var list = document.getElementById("msg_list")
+					// list.append(line);
+					// line.scrollIntoView()
+					// while (list.childElementCount > 300) {
+					// 	list.firstChild.remove()
+					// }
+					// // console.log(msg);
+					// var i = 1;
+					// window.content._data.history++;
+					// if(window.updateChart){
+					// 	updateChart();
+					// }
 
 					// update_graph()
 				});
@@ -837,7 +837,7 @@
 	<!-- <script type="text/javascript" src="/static/js/webcam.min.js"></script> -->
 
 	<!-- Configure a few settings and attach camera -->
-	<script language="JavaScript">
+	<!-- <script language="JavaScript">
 		Webcam.set({
 			width: 640,
 			height: 480,
@@ -849,7 +849,7 @@
 
 		document.getElementById('my_camera').style = "width:100%; height: 100%; overflow:hidden";
 		document.getElementById('my_camera').getElementsByTagName('video')[0].style = "width: 100%";
-	</script>
+	</script> -->
 	<script>
 		window.content = new Vue({
 			delimiters: ['{[', ']}'],
