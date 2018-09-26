@@ -124,3 +124,7 @@ def video_feed():
 @main.route('/charts')
 def charts():
     return render_template('charts.html')
+
+@main.route('/maps')
+def maps():
+    return render_template('maps.html')

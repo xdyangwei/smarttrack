@@ -9,6 +9,24 @@ var mapData = `{ "type": "FeatureCollection", "features": [ { "type": "Feature",
 // var jsonData = JSON.parse(data_original.replace(/ObjectId\(/g, '').replace(/\)/g, '').replace(/'/g, '"'))
 
 echarts.registerMap('indoor', mapData);
+myChart.setOption({
+  backgroundColor: '#fff',
+  geo: [{
+    center: [4.5, -4.5],
+    zoom: 2,
+    roam: true,
+    itemStyle: {
+      normal: {
+        color: 'transparent',
+        //borderColor: 'rgba(255,255,255,255)',
+        borderWidth: 1
+      }
+    },
+    map: 'indoor',
+    silent: true
+  }]
+})
+
 console.log("ECHARTS");
 var updateChart = function () {
   console.log("DATA");
@@ -42,24 +60,24 @@ var updateChart = function () {
 
       }
 
-      console.log(pathList);
+      // console.log(pathList);
 
       myChart.setOption({
-        backgroundColor: '#fff',
-        geo: [{
-          center: [4.5, -4.5],
-          zoom: 2,
-          roam: true,
-          itemStyle: {
-            normal: {
-              color: 'transparent',
-              //borderColor: 'rgba(255,255,255,255)',
-              borderWidth: 1
-            }
-          },
-          map: 'indoor',
-          silent: true
-        }],
+        // backgroundColor: '#fff',
+        // geo: [{
+        //   center: [4.5, -4.5],
+        //   zoom: 2,
+        //   roam: true,
+        //   itemStyle: {
+        //     normal: {
+        //       color: 'transparent',
+        //       //borderColor: 'rgba(255,255,255,255)',
+        //       borderWidth: 1
+        //     }
+        //   },
+        //   map: 'indoor',
+        //   silent: true
+        // }],
 
 
         series: [{
