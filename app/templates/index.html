@@ -23,16 +23,17 @@
 				var socket = io.connect('http://120.78.71.220:5050'+namespace);
 
 				socket.on('event', function (msg) {
-					// lastRecv = msg;
-					// var line = document.createElement("div");
-					// line.innerText = JSON.stringify(msg);
-					// var list = document.getElementById("msg_list")
-					// list.append(line);
-					// line.scrollIntoView()
-					// while (list.childElementCount > 300) {
-					// 	list.firstChild.remove()
-					// }
+					lastRecv = msg;
+					var line = document.createElement("div");
+					line.innerText = JSON.stringify(msg);
+					var list = document.getElementById("msg_list")
+					list.append(line);
+					line.scrollIntoView()
+					while (list.childElementCount > 300) {
+						list.firstChild.remove()
+					}
 					// console.log(msg);
+					var i = 1;
 					window.content._data.history++;
 					if(window.updateChart){
 						updateChart();
@@ -49,7 +50,7 @@
 	<link href="/static/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 	<!-- Custom CSS -->
 	<link href="/static/css/style.css" rel='stylesheet' type='text/css' />
-	<link rel="stylesheet" href="css/morris.css" type="text/css" />
+	<link rel="stylesheet" href="/static/css/morris.css" type="text/css" />
 	<!-- Graph CSS -->
 	<link href="/static/css/font-awesome.css" rel="stylesheet">
 	<!-- jQuery -->
@@ -102,7 +103,7 @@
 											</div>
 										</li>
 										<li><a href="#">
-												<div class="user_img"><img src="images/in11.jpg" alt=""></div>
+												<div class="user_img"><img src="/static/images/in11.jpg" alt=""></div>
 												<div class="notification_desc">
 													<p>Lorem ipsum dolor</p>
 													<p><span>1 hour ago</span></p>
@@ -110,7 +111,7 @@
 												<div class="clearfix"></div>
 											</a></li>
 										<li class="odd"><a href="#">
-												<div class="user_img"><img src="images/in10.jpg" alt=""></div>
+												<div class="user_img"><img src="/static/images/in10.jpg" alt=""></div>
 												<div class="notification_desc">
 													<p>Lorem ipsum dolor </p>
 													<p><span>1 hour ago</span></p>
@@ -118,7 +119,7 @@
 												<div class="clearfix"></div>
 											</a></li>
 										<li><a href="#">
-												<div class="user_img"><img src="images/in9.jpg" alt=""></div>
+												<div class="user_img"><img src="/static/images/in9.jpg" alt=""></div>
 												<div class="notification_desc">
 													<p>Lorem ipsum dolor</p>
 													<p><span>1 hour ago</span></p>
@@ -142,7 +143,7 @@
 											</div>
 										</li>
 										<li><a href="#">
-												<div class="user_img"><img src="images/in8.jpg" alt=""></div>
+												<div class="user_img"><img src="/static/images/in8.jpg" alt=""></div>
 												<div class="notification_desc">
 													<p>Lorem ipsum dolor</p>
 													<p><span>1 hour ago</span></p>
@@ -150,7 +151,7 @@
 												<div class="clearfix"></div>
 											</a></li>
 										<li class="odd"><a href="#">
-												<div class="user_img"><img src="images/in6.jpg" alt=""></div>
+												<div class="user_img"><img src="/static/images/in6.jpg" alt=""></div>
 												<div class="notification_desc">
 													<p>Lorem ipsum dolor</p>
 													<p><span>1 hour ago</span></p>
@@ -158,7 +159,7 @@
 												<div class="clearfix"></div>
 											</a></li>
 										<li><a href="#">
-												<div class="user_img"><img src="images/in7.jpg" alt=""></div>
+												<div class="user_img"><img src="/static/images/in7.jpg" alt=""></div>
 												<div class="notification_desc">
 													<p>Lorem ipsum dolor</p>
 													<p><span>1 hour ago</span></p>
@@ -237,7 +238,7 @@
 							<li class="dropdown profile_details_drop">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 									<div class="profile_img">
-										<span class="prfil-img"><img src="images/in4.jpg" alt=""> </span>
+										<span class="prfil-img"><img src="/static/images/in4.jpg" alt=""> </span>
 										<div class="user-name">
 											<p>西电mobisys</p>
 											<span>Administrator</span>
@@ -298,7 +299,6 @@
 							<div class="four-text">
 								<h3>路径个数</h3>
 								<h4>{[ path ]}</h4>
-
 							</div>
 
 						</div>
@@ -314,7 +314,6 @@
 								<h4>{[ alarm ]}</h4>
 
 							</div>
-
 						</div>
 					</div>
 					<div class="clearfix"></div>
@@ -375,7 +374,7 @@
 									<div class="col-md-6 col-sm-6 col-xs-6 ">
 										<h2 class="text-right c-teal f-300 m-t-20">◉LIVE</h2>
 									</div>
-									<div id="my_camera"></div>
+									<!-- <div id="my_camera"></div> -->
 								</div>
 
 								<div class="widget-body p-15">
@@ -429,11 +428,12 @@
 							<div class="card-header">
 								<h3>图表</h3>
 							</div>
+
 							<div class="card-body p-b-20">
 								<div class="list-group">
 									<a class="list-group-item media" href="">
 										<div class="pull-left">
-											<img class="lg-item-img" src="images/in1.jpg" alt="">
+											<img class="lg-item-img" src="/static/images/in1.jpg" alt="">
 										</div>
 										<div class="media-body">
 											<div class="pull-left">
@@ -447,7 +447,7 @@
 									</a>
 									<a class="list-group-item media" href="">
 										<div class="pull-left">
-											<img class="lg-item-img" src="images/in2.jpg" alt="">
+											<img class="lg-item-img" src="/static/images/in2.jpg" alt="">
 										</div>
 										<div class="media-body">
 											<div class="pull-left">
@@ -461,7 +461,7 @@
 									</a>
 									<a class="list-group-item media" href="">
 										<div class="pull-left">
-											<img class="lg-item-img" src="images/in3.jpg" alt="">
+											<img class="lg-item-img" src="/static/images/in3.jpg" alt="">
 										</div>
 										<div class="media-body">
 											<div class="pull-left">
@@ -475,7 +475,7 @@
 									</a>
 									<a class="list-group-item media" href="">
 										<div class="pull-left">
-											<img class="lg-item-img" src="images/in4.jpg" alt="">
+											<img class="lg-item-img" src="/static/images/in4.jpg" alt="">
 										</div>
 										<div class="media-body">
 											<div class="pull-left">
@@ -663,11 +663,6 @@
 				</div>
 				<!--inner block end here-->
 				<!--copy rights start here-->
-				<div class="copyrights">
-					<p>Copyright &copy; 2016.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank"
-						 title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
-				</div>
-				<!--COPY rights end here-->
 			</div>
 		</div>
 		<!--//content-inner-->
@@ -684,7 +679,7 @@
 						</a></li>
 
 
-					<li id="menu-academico"><a href="inbox"><i class="fa fa-envelope nav_icon"></i><span>收件箱</span>
+					<li id="menu-academico"><a href="inbox"><i class="fa fa-video-camera"></i><span>视频</span>
 							<div class="clearfix"></div>
 						</a></li>
 					<li><a href="gallery.html"><i class="fa fa-picture-o" aria-hidden="true"></i><span>相册</span>
@@ -839,7 +834,7 @@
 			})
 		});
 	</script>
-	<script type="text/javascript" src="/static/js/webcam.min.js"></script>
+	<!-- <script type="text/javascript" src="/static/js/webcam.min.js"></script> -->
 
 	<!-- Configure a few settings and attach camera -->
 	<script language="JavaScript">
@@ -865,7 +860,7 @@
 				count: 15,
 				history: 15000,
 				path: 3,
-				alarm: 20
+				alarm: 20,
 
 			}
 		})

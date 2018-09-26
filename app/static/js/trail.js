@@ -57,7 +57,6 @@ var updateChart = function () {
         window.content._data.count=pathData.length;
         // window.content._data.history=pathData.length*999*Math.ceil(Math.random()*10);
         window.content._data.alarm=Math.floor(Math.random()*10);
-
       }
 
       // console.log(pathList);

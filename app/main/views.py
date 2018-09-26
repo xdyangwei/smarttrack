@@ -128,3 +128,6 @@ def charts():
 @main.route('/maps')
 def maps():
     return render_template('maps.html')
+@main.route('/videos')
+def videos():
+    return render_template('video.html')
