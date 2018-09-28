@@ -12,6 +12,35 @@ from wtforms import ValidationError
 
 from .forms import VideoForm
 
+import operator
+from functools import reduce
+import pymongo
+from app.filter import TracerList
+
+def get_raw_data(count, startdatetime=None):
+    db_conn = pymongo.MongoClient()
+    dev_names = [d['name'] for d in db_conn['identity']['devices'].find()]
+    # print(dev_names)
+
+    ret=None
+    if startdatetime is None:
+        ret = [list(db_conn['message'][dev_name].find().sort('time', -1).limit(count)) for dev_name in dev_names]
+    else:
+        ret = [list(db_conn['message'][dev_name].find({'time':{'$gt':str(startdatetime)}}).sort('time', -1).limit(count)) for dev_name in dev_names]
+        print('TIMECUT: ', str(startdatetime), 'RETLEN: ', len(ret))
+    db_conn.close()
+
+    ret = reduce(operator.add, ret)
+    for i in ret:
+        tp = [int(s) for s in i['time'].replace('-', ' ').replace(':', ' ').replace('.', ' ').split()]
+        if len(tp) == 7:
+            i['time'] = datetime(tp[0], tp[1], tp[2], tp[3], tp[4], tp[5], tp[6])
+        else:
+            i['time'] = None
+
+    ret.sort(key=lambda d: d['time'])
+
+    return ret[-count:]
 
 @main.route('/', methods=['GET', 'POST'])
 def index():
@@ -35,10 +64,6 @@ def index():
     db.session.add(video_switch)
     # db.session.commit()  
     return render_template('index.html', form=form, map_on=map_on, video_on=video_on)
-@main.route('/map_on1')
-def map():
-    form = VideoForm()
-    return form.switch_map.data
 
 if os.environ.get('CAMERA'):
     Camera = import_module('camera_' + os.environ['CAMERA']).Camera
@@ -57,6 +82,16 @@ def gen(camera):
 def data():
     return str([{'x':i['x'], 'y':i['y'], 'time':i['time']} for i in mongo.db.mycol.find()])
 
+@main.route('/path.json')
+def path():
+    l = TracerList()
+    for d in get_raw_data(1000):
+        d.pop('_id')
+        l.tracetarget(d)
+
+    return str([tl.targetlist for tl in l.tracerlist if len(tl.targetlist) > 1]).replace("'", '"').replace('datetime.datetime(', '"').replace(')', '"')
+
+    #return str([{'x':i['x'], 'y':i['y'], 'time':i['time']} for i in mongo.db.mycol.find()])
 
 @main.route('/video_feed', methods=['GET', 'POST'])
 def video_feed():
@@ -67,13 +102,21 @@ def video_feed():
         
 @main.route('/settings', methods=['GET', 'POST'])
 def settings():
-    return render_template('settings.html')
+    from .forms import SetForm
+    form = SetForm()
+    return render_template('settings.html', form = form)
 
 
 @main.route('/tables', methods=['GET', 'POST'])
 def tables():
     return render_template('tables.html')
 
-@main.route('/charts', methods=['GET', 'POST'])
+
+@main.route('/charts')
 def charts():
-    return render_template('charts.html')
+    legend = 'Monthly Data'
+    labels = ["January", "February", "March",
+              "April", "May", "June", "July", "August"]
+    values = [10, 9, 8, 7, 6, 4, 7, 8]
+    return render_template('charts.html', values=values, labels=labels, legend=legend)
+
