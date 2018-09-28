@@ -31,6 +31,12 @@ def get_raw_data(count, startdatetime=None):
     db_conn.close()
 
     ret = reduce(operator.add, ret)
+    for i in range(len(ret)):
+        if 'data' in ret[i].keys():
+            ret[i]['data']['time']=ret[i]['time']
+            ret[i]['data']['_id']=ret[i]['_id']
+            ret[i]=ret[i]['data']
+
     for i in ret:
         tp = [int(s) for s in i['time'].replace('-', ' ').replace(':', ' ').replace('.', ' ').split()]
         if len(tp) == 7:
@@ -86,6 +92,8 @@ def data():
 @main.route('/path.json')
 def path():
     l = TracerList()
+    #return str(get_raw_data(10))
+
     for d in get_raw_data(1000):
         d.pop('_id')
         l.tracetarget(d)
